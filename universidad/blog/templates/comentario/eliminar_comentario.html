@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="section">
+      <div class="card">
+          <div class="card-content">
+              <h3 class="title is-4">Eliminar Comentario</h3>
+              <p>¿Estás seguro de que deseas eliminar este comentario?</p>
+              <p><strong>{{ comentario.usuario.username }}:</strong> {{ comentario.comentario }}</p>
+              <form method="POST">
+                  {% csrf_token %}
+                  <div class="buttons">
+                      <button type="submit" class="button is-danger">Eliminar</button>
+                      <a href="{% url 'detalle_cancion' comentario.cancion.id comentario.cancion.link_spotify %}" class="button is-light">Cancelar</a>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+{% endblock %}

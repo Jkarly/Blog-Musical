@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Publicación{% endblock %}
+
+{% block content %}
+<div class="container-fluid d-flex flex-column min-vh-100 mb-4">
+    <!-- Notificación -->
+    <h1 class="display-4 font-weight-bold text-center mb-4  mt-5 " 
+        style="font-family: 'Silkscreen', sans-serif; color: white;">
+        Crear Nueva Publicación
+    </h1>
+
+    <!-- Formulario -->
+    <div class="row justify-content-center flex-grow-1 align-items-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Guardar Publicación</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    h1.display-4.font-weight-bold {
+        background-color: transparent;
+    }
+    h1.display-4.font-weight-bold {
+        font-family: 'Silkscreen', sans-serif;
+        font-size: 4rem; 
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Canciones del Género: {{ genero.nombre }}{% endblock %}
+
+{% block content %}
+<div class="album-container">
+    <!-- Album Header -->
+    <div class="album-header">
+        <img class="album-image" src="{{ album.imagen.url }}" alt="{{ album.titulo }}">
+        <div class="album-info">
+            <h2>{{ album.titulo }}</h2>
+            <p>{{ album.artista }}</p>
+            <p>{{ album.fecha_lanzamiento }}</p>
+            <p>Tracks: {{ album.cantidad_canciones }}</p>
+        </div>
+    </div>
+
+    <!-- Song List -->
+    <div class="song-list">
+        <ul>
+            {% for cancion in canciones %}
+            <li class="song-item">
+                <div class="spotify-tracks-container">
+                    {% if cancion.link_spotify %}
+                    <iframe src="https://open.spotify.com/embed/track/{{ cancion.link_spotify }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    {% else %}
+                    <p>No se encontró información de la pista en Spotify.</p>
+                    {% endif %}
+                </div>
+            </li>
+            {% empty %}
+            <li>No hay canciones disponibles.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

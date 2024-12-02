@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Logged out{% endblock %}
+{% block content %}
+<div class="column is-three-quarters">
+  <h1>Cierre de sesión</h1> 
+  <p>Se ha cerrado la sesión correctamente. 
+    Puede <a href="{% url 'login' %}">iniciar sesión nuevamente</a>.
+ 
+</div>
+{% endblock %}

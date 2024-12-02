@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid p-3">
+    <h1 class="my-4 text-center Rampart display-3">Mis Favoritos</h1>
+
+    {% if favoritos %}
+        <div class="row">
+            {% for favorito in favoritos %}
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card">
+                        {% if favorito.cancion.imagen %}
+                            <img src="{{ favorito.cancion.imagen.url }}" class="card-img-top" alt="{{ favorito.cancion.titulo }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ favorito.cancion.titulo }}</h5>
+                            <p class="card-text">{{ favorito.cancion.descripcion|slice:":80" }}{% if favorito.cancion.descripcion|length > 80 %}...{% endif %}</p>
+                            <p><strong>Artista:</strong> {{ favorito.cancion.artista }}</p>
+                            <p><strong>Álbum:</strong> {{ favorito.cancion.album }}</p>
+                            <p><strong>Fecha de Lanzamiento:</strong> {{ favorito.cancion.fecha_lanzamiento }}</p>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-primary flex-fill me-2" href="{% url 'detalle_cancion' favorito.cancion.id favorito.cancion.link_spotify %}">Ver más</a>
+                                <a href="{% url 'eliminar_de_favoritos' favorito.cancion.id %}" class="btn btn-danger flex-fill ms-2">Eliminar</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tienes canciones favoritas.</p>
+    {% endif %}
+</div>
+{% endblock %}

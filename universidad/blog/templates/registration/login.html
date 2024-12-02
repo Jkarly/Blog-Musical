@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Log-in{% endblock %}
+
+<div class="columns">
+  {% block content %}
+    <div class="column is-half">
+      <div class="login-wrap">
+        <div class="login-html">
+          <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+          <label for="tab-1" class="tab">Log In</label>
+          <div class="login-form">
+            <div class="sign-in-htm">
+              <h1 class="is-size-3 mt-3">Log-in</h1>
+              {% if messages %}
+                <p class="is-size-5" style="color: #fff;">
+                  {% for message in messages %}
+                    {{ message }}
+                  {% endfor %}
+                </p>
+              {% endif %}
+              <p style="color: #fff;">
+                Por favor, utilice el siguiente formulario para iniciar sesión. Si no tiene una cuenta
+                <a href="{% url 'register' %}" style="color: #FFD700;">regístrese aquí</a>.
+              </p>
+
+              <form action="{% url 'login' %}" method="post">
+                {% load widget_tweaks %}
+                {% for field in form %}
+                  <div class="group">
+                    {{ field.label_tag }}
+                    {% render_field field class+="input mt-2" %}
+                  </div>
+                {% endfor %}
+                {% csrf_token %}
+                <div class="group">
+                  <input type="submit" value="Entrar" class="button mt-2">
+                </div>
+                <input type="hidden" name="next" value="{{ next }}" />
+              </form>
+              <div class="hr"></div>
+              <div class="foot-lnk">
+                <a href="{% url 'password_change' %}">Forgot Password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+</div>

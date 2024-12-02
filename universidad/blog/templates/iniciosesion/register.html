@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Crear una cuenta{% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    {% if messages %}
+    <div class="notification is-success is-light">
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="column is-half-tablet is-one-third-desktop">
+        <h1 class="display-3 text-center mb-4 text-white">Crear una cuenta</h1>
+
+
+        <p class="subtitle is-5">Por favor, completa el siguiente formulario para registrarte:</p>
+        <p class="has-text-grey text-white text-center">
+            La contraseña debe tener al menos 8 caracteres y no debe ser una contraseña común.
+        </p>
+        <div class="box mb-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <button type="submit" class="button is-link is-fullwidth mt-4">Crear cuenta <i class="fa-solid fa-user ms-2"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

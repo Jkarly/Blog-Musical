@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Formulario de Contacto{% endblock %}
+
+{% block content %}
+  <div class="columns">
+    <div class="column is-half">
+      <div class="contact-wrap">
+        <div class="contact-html">
+          <h1 class="is-size-3 mt-3">Formulario de Contacto</h1>
+
+          <!-- Mostrar mensajes de error -->
+          {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+                <div class="notification is-danger">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <form method="post" action="{% url 'contacto' %}">
+            {% csrf_token %}
+            <div class="field">
+              <label class="label">Correo Electrónico</label>
+              <div class="control">
+                <input class="input" type="email" name="correo_electronico" placeholder="Tu correo electrónico" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Asunto</label>
+              <div class="control">
+                <input class="input" type="text" name="asunto" placeholder="Asunto" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Mensaje</label>
+              <div class="control">
+                <textarea class="textarea" name="mensaje" placeholder="Tu mensaje" required></textarea>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" type="submit">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

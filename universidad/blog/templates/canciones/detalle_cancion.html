@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load embed_video_tags i18n %}
+
+{% block title %}{{ cancion.titulo }}{% endblock %}
+{% load static %}
+{% block content %}
+{% load i18n %}
+<style>
+  .container.fondo-blanco {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .section {
+      margin-bottom: 20px;
+  }
+</style>
+<div class="container fondo-blanco">
+    <!-- Canción Detalle -->
+    {% if user.is_authenticated %}
+    <div class="mb-3">
+        {% if es_favorito %}
+            <a href="{% url 'eliminar_de_favoritos' cancion.id %}" class="btn btn-danger">Eliminar de Favoritos</a>
+        {% else %}
+            <a href="{% url 'agregar_a_favoritos' cancion.id %}" class="btn btn-primary">Agregar a Favoritos</a>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="section">
+        <div class="card">
+            <div class="card-content">
+                <div class="media">
+                    {% if cancion.imagen %}
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src="{{ cancion.imagen.url }}" alt="{{ cancion.titulo }}">
+                        </figure>
+                    </div>
+                    {% endif %}
+                    <div class="media-content">
+                        <h1 class="title is-3">{{ cancion.titulo }}</h1>
+                        <p class="subtitle is-5">
+                            <strong style="color: black;">Artista:</strong> 
+                            <span style="color: #6c7a89;">{{ cancion.artista }}</span>
+                        </p>
+                        <p class="subtitle is-5">
+                            <strong style="color: black;">Álbum:</strong> 
+                            <span style="color: #6c7a89;">{{ cancion.album }}</span>
+                        </p>
+                        <p class="subtitle is-5">
+                            <strong style="color: black;">Fecha de Lanzamiento:</strong> 
+                            <span style="color: #6c7a89;">{{ cancion.fecha_lanzamiento }}</span>
+                        </p>
+                        <p class="subtitle is-5">
+                            <strong style="color: black;">Género:</strong> 
+                            <span style="color: #6c7a89;">
+                              {% if cancion.genero.all %}
+                                  {% for genero in cancion.genero.all %}
+                                      {{ genero.nombre }}{% if not forloop.last %}, {% endif %}
+                                  {% endfor %}
+                              {% else %}
+                                  No se especificó género.
+                              {% endif %}
+                          </span>
+                        </p>
+                        
+                        {% if cancion %}
+                        <strong style="color: black;">Letras:</strong> 
+                        <p>{{ letras_traducidas }}</p>
+                    {% else %}
+                        <p>{% trans "No se encontró la canción." %}</p>
+                    {% endif %}
+                    
+                    
+                    </div>
+                </div>
+                <div class="content has-text-centered">
+                    <a class="button is-link" href="{% url 'inicio' %}">Volver a la lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="section">
+        <h3 class="title is-4">Escuchar en Spotify</h3>
+        {% if track %}
+        <iframe src="https://open.spotify.com/embed/track/{{ track_id }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        {% else %}
+        <p>No se encontró información de la pista en Spotify.</p>
+        {% endif %}
+    </div>
+
+    <!-- Carrusel de Imágenes -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-inner">
+            {% for grupo in imagenes_grupos %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="d-flex">
+                    {% for imagen in grupo %}
+                    <div class="col-6 position-relative">
+                        <img src="{{ imagen.imagen.url }}" class="d-block w-100" alt="{{ imagen.descripcion }}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p>{{ imagen.descripcion }}</p>
+                            <button class="btn btn-primary ver-mas-btn" type="button" data-bs-toggle="collapse" data-bs-target="#info{{ forloop.parentloop.counter }}{{ forloop.counter }}" aria-expanded="false" aria-controls="info{{ forloop.parentloop.counter }}{{ forloop.counter }}">
+                                Ver más
+                            </button>
+                            <div class="collapse" id="info{{ forloop.parentloop.counter }}{{ forloop.counter }}">
+                                <div class="card card-body mt-3">
+                                    <p style="color: black;">{{ imagen.mas_informacion }}</p>
+                                    {% if imagen.link %}
+                                    <a href="{{ imagen.link }}" class="btn btn-link">Leer Más</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+    <!-- Videos -->
+    {% if videos %}
+    <div class="section">
+        <h3 class="title is-4">Videos</h3>
+        <div class="row">
+            {% for video in videos %}
+            <div class="col-12 mb-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.enlace_video }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Comentarios -->
+    <div class="section">
+        <div class="card">
+            <div class="card-content">
+                <h3 class="title is-4">Comentarios</h3>
+                <div class="content">
+                    <ul>
+                        {% for comentario in comentarios %}
+                        <li class="box">
+                            <p><strong>{{ comentario.usuario.username }}:</strong> {{ comentario.comentario }}</p>
+                            <p class="has-text-right"><small>{{ comentario.fecha_comentario }}</small></p>
+                            {% if comentario.usuario == request.user or request.user.is_staff %}
+                            <div class="buttons are-small">
+                                <a href="{% url 'editar_comentario' comentario.id %}" class="button is-info is-light">Editar</a>
+                                <form action="{% url 'eliminar_comentario' comentario.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="button is-danger is-light">Eliminar</button>
+                                </form>
+                            </div>
+                            {% endif %}
+                        </li>
+                        {% empty %}
+                        <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    {% if user.is_authenticated %}
+    <div class="content">
+        <h3 class="title is-4">Deja un comentario</h3>
+        <button class="button is-primary" id="openCommentModal">Agregar Comentario</button>
+        <!-- Modal -->
+        <div class="modal" id="commentModal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Agregar Comentario</p>
+                    <button class="delete" id="closeCommentModal" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="button is-primary">Enviar</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>Debes iniciar sesión para dejar un comentario.</p>
+    {% endif %}
+</div>
+{% endblock %}

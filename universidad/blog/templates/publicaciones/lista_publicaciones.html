@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista de Publicaciones{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="columns is-centered"  style="margin-top: 20px;">
+        <div class="column is-full">
+            <div class="notification is-primary">
+                <button class="button is-primary is-fullwidth create-publication-button" onclick="window.location.href='{% url 'crear_publicacion' %}'">
+                    <i class="fa-solid fa-circle-plus" style="font-size: 2.5rem; margin-right: 10px;"></i>
+                    Crear Nueva Publicación 
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Publicaciones -->
+    <div class="columns is-multiline mb-4">
+        {% for publicacion in publicaciones %}
+            <div class="column is-12-mobile is-6-tablet is-4-desktop">
+                <article class="box publication-box">
+                    <figure class="image is-16by9 position-relative">
+                        {% if publicacion.imagen %}
+                            <img src="{{ publicacion.imagen.url }}" alt="Imagen de la publicación: {{ publicacion.titulo }}" class="publication-image">
+                        {% else %}
+                            <img src="{% static 'default-image.png' %}" alt="Imagen por defecto" class="publication-image">
+                        {% endif %}
+                        
+                        <!-- Botón de Guardar -->
+                        <form action="{% url 'guardar_publicacion' publicacion.id %}" method="post" class="absolute-top-right">
+                            {% csrf_token %}
+                            <button type="submit" class="button is-primary is-medium">
+                                <span class="icon is-small">
+                                    {% if publicacion.id in usuario_guardadas %}
+                                        <i class="fa-solid fa-bookmark"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    {% endif %}
+                                </span>
+                            </button>
+                        </form>
+                    </figure>
+                    
+                    <div class="content">
+                        <!-- Editar y eliminar -->
+                        <div class="d-flex justify-content-between">
+                            <h3 class="title is-4">{{ publicacion.titulo }}</h3>
+                            <div class="buttons">
+                                {% if publicacion.usuario == request.user %}
+                                    <a class="button is-warning is-small custom-button" href="{% url 'editar_publicacion' publicacion.id %}">
+                                        <span class="icon is-small">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </a>
+                                    <form action="{% url 'eliminar_publicacion' publicacion.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="button is-danger is-small ml-1" style="background-color: #F5004F; border-color: #F5004F; color: white;">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p>{{ publicacion.descripcion|slice:":200" }}{% if publicacion.descripcion|length > 200 %}...{% endif %}</p>
+                        <p class="has-text-grey-light"><strong>Fecha de Creación:</strong> {{ publicacion.fecha_creacion }}</p>
+                        
+                        <div class="user-info d-flex align-items-center text-start">
+                            <div class="user-avatar me-2">
+                                {% if publicacion.usuario.perfilusuario.foto_perfil %}
+                                    <figure class="image is-48x48">
+                                        <img src="{{ publicacion.usuario.perfilusuario.foto_perfil.url }}" alt="Foto de perfil de {{ publicacion.usuario.username }}" class="is-rounded">
+                                    </figure>
+                                {% else %}
+                                    <figure class="image is-48x48">
+                                        <img src="{% static 'default-avatar.png' %}" alt="Avatar por defecto de {{ publicacion.usuario.username }}" class="is-rounded">
+                                    </figure>
+                                {% endif %}
+
+                            </div>
+                            <p class="has-text-grey"><strong>Publicador:</strong> {{ publicacion.usuario.username }}</p>
+                        </div>
+                        
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

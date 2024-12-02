@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Editar Perfil</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    </div>
+    <div class="field">
+      <label class="label">{{ form.telefono.label }}</label>
+      <div class="control">
+        {{ form.telefono }}
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">{{ form.fecha_nacimiento.label }}</label>
+      <div class="control">
+        {{ form.fecha_nacimiento }}
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">{{ form.foto_perfil.label }}</label>
+      <div class="control">
+        {{ form.foto_perfil }}
+      </div>
+    </div>
+    <button type="submit" class="button is-primary">Guardar cambios</button>
+  </form>
+{% endblock %}

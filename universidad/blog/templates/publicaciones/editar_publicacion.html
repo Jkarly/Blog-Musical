@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Editar Publicación{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <h2 class="title">Editar Publicación</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label" for="titulo">Título</label>
+                    <div class="control">
+                        <input class="input" type="text" id="titulo" name="titulo" value="{{ publicacion.titulo }}" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="descripcion">Descripción</label>
+                    <div class="control">
+                        <textarea class="textarea" id="descripcion" name="descripcion" required>{{ publicacion.descripcion }}</textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="imagen">Imagen</label>
+                    <div class="control">
+                        <input class="input" type="file" id="imagen" name="imagen">
+                        {% if publicacion.imagen %}
+                            <img src="{{ publicacion.imagen.url }}" alt="Imagen actual" class="image is-128x128">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Guardar Cambios</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

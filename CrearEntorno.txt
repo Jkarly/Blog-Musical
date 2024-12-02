@@ -1,0 +1,21 @@
+python -m venv entorno
+entorno\Scripts\activate
+pip install django
+django-admin  startproject  nombre_proyecto
+ python manage.py startapp blog
+python manage.py makemigrations
+ python manage.py migrate
+ python manage.py createsuperuser
+ python manage.py runserver
+
+python -m pip install Pillow
+pip install django-widget-tweaks
+pip install django-debug-toolbar
+pip install django-embed-video
+pip show django-embed-video
+pip install spotipy
+pip install googletrans
+pip install django-crispy-forms
+pip show django-crispy-forms
+
+

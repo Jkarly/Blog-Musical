@@ -1,0 +1,601 @@
+  body {
+    background-image: url('/static/images/fondo7.jpg'); /* Ruta a tu imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+
+  
+  #pantalla-juego {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para el contenido */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  
+  .login-wrap {
+    width: 100%;
+    margin: auto;
+    max-width: 525px;
+    min-height: 670px;
+    position: relative;
+    background: url('/static/images/fondo2.jpg') no-repeat center center; /* Imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir toda el área */
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+}
+
+/* Estilo del contenido del formulario de login */
+.login-html {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 90px 70px 50px 70px;
+    background: rgba(40, 57, 101, .9); /* Fondo semitransparente oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+  .login-html .tab {
+    font-size: 22px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .login-html .sign-in:checked + .tab {
+    color: #fff;
+    border-color: #1161ee;
+  }
+  
+  .login-form {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .login-form .group {
+    margin-bottom: 15px;
+  }
+  
+  .login-form .group .label,
+  .login-form .group .input,
+  .login-form .group .button {
+    width: 100%;
+    color: #fff;
+    display: block;
+  }
+  
+  .login-form .group .input,
+  .login-form .group .button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .1);
+  }
+  
+  .login-form .group input[data-type="password"] {
+    text-security: circle;
+    -webkit-text-security: circle;
+  }
+  
+  .login-form .group .label {
+    color: #aaa;
+    font-size: 12px;
+  }
+  
+  .login-form .group .button {
+    background: #1161ee;
+  }
+  
+  .hr {
+    height: 2px;
+    margin: 60px 0 50px 0;
+    background: rgba(255, 255, 255, .2);
+  }
+  
+  .foot-lnk {
+    text-align: center;
+  }
+
+
+  /* Carrusel */
+  .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .carousel-caption p {
+    margin-bottom: 0;
+  }
+  
+  .carousel-caption .btn {
+    margin-top: 10px;
+  }
+  
+  
+  /* Estilos para el botón de ver más */
+.ver-mas-btn {
+  margin-top: 10px;
+}
+
+.info-adicional {
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.info-adicional p {
+  color: #fff;
+}
+
+.info-adicional a {
+  color: #ffd700; /* Color dorado para el enlace */
+}
+
+
+  /* .carousel {
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+  } */
+  
+  /* .carousel-item {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    
+    height: 400px;
+  } */
+  
+  /* .carousel-item .row {
+    display: flex;
+  }
+  
+  .carousel-item .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0;
+  } */
+  
+  
+  /* Video */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* k */
+.fondo-blanco {
+  background-color: white;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Estilo adicional para el formulario de búsqueda */
+.search-form input {
+  border-radius: 20px;
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.search-form button {
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  margin-left: 0.5rem;
+}
+
+/* Agrega este CSS al archivo de estilos */
+/* Agrega este CSS al archivo de estilos */
+.create-publication-button {
+  background-color: #3498db; /* Color azul más intenso */
+  color: white;
+  font-size: 1.1rem; /* Tamaño de fuente ligeramente mayor */
+  font-weight: bold;
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+}
+
+.create-publication-button:hover {
+  background-color: #2980b9; /* Color azul más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Aumento ligero del tamaño al pasar el mouse */
+}
+
+.create-publication-button:focus {
+  outline: none; /* Eliminar el contorno de enfoque */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); /* Agregar una sombra sutil al enfoque */
+}
+
+.image img {
+  object-fit: cover;
+}
+/* Agrega este CSS al archivo de estilos */
+.save-button {
+  background-color: #1abc9c; /* Color verde menta */
+  color: white;
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+  font-weight: bold;
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+}
+
+.save-button:hover {
+  background-color: #16a085; /* Color verde más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Aumento ligero del tamaño al pasar el mouse */
+}
+
+.save-button:focus {
+  outline: none; /* Eliminar el contorno de enfoque */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); /* Agregar una sombra sutil al enfoque */
+}
+
+/* Contenedor de géneros */
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+  gap: 20px; /* Space between the genre cards */
+  padding: 20px;
+  background-color: #1c1c1c; /* Background color */
+}
+
+/* Genre Card */
+.genre-card {
+  display: flex;
+  flex-direction: row; /* Horizontal alignment of image and info */
+  align-items: center; /* Vertically center the content */
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  flex-shrink: 0; /* Prevent shrinking */
+  overflow: hidden; /* Ensures content doesn’t overflow */
+}
+
+/* Genre Image */
+.genre-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+/* Genre Info */
+.genre-info {
+  display: flex;
+  flex-direction: column; /* Vertical alignment of info */
+  justify-content: center; /* Center info vertically */
+}
+
+.genre-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.genre-info p {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem; 
+  font-weight: bold;
+  text-align: center;
+  color: #F8FFDB; 
+  margin: 30px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+/* pie */
+.footer {
+  padding: 20px 0;
+  background-color: #f8f9fa;
+}
+.footer .container {
+  display: flex;
+  align-items: center;
+}
+.footer img {
+  max-width: 100%;
+  height: auto;
+}
+.footer .square {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 5px;
+  color: #fff; /* Color del texto en los cuadrados */
+  height: 100%; /* Asegura que los cuadrados tengan la misma altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer .bg-primary {
+  background-color: #007bff; /* Color de fondo azul */
+}
+.footer .bg-secondary {
+  background-color: #6c757d; /* Color de fondo gris */
+}
+.footer .bg-success {
+  background-color: #28a745; /* Color de fondo verde */
+}
+.footer .bg-danger {
+  background-color: #dc3545; /* Color de fondo rojo */
+}
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr); 
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+.album-item {
+  position: relative;
+  height: 600px; /* Ajusta este valor si es necesario */
+}
+
+.album-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.album-item:hover img {
+  transform: scale(1.05);
+}
+
+.album-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 14px;
+}
+.album-item.large {
+  grid-column: 4 / 5;
+  grid-row: 1 / 3;
+  height: 100%;
+  aspect-ratio: 1/2;
+  position: relative;
+}
+@media (max-width: 1024px) {
+  .album-item.large {
+    grid-column: span 2; /* Mantiene dos columnas en dispositivos medianos */
+    grid-row: span 2; /* Mantiene dos filas en dispositivos medianos */
+  }
+}
+
+@media (max-width: 768px) {
+  .album-item.large {
+    grid-column: span 2; /* Reduce a dos columnas en pantallas medianas */
+    grid-row: span 2; /* Mantiene dos filas */
+  }
+}
+
+@media (max-width: 480px) {
+  .album-item.large {
+    grid-column: span 1; /* Ocupa una columna completa en dispositivos pequeños */
+    grid-row: span 1; /* Ocupa una fila */
+  }
+}
+/* Contened
+/* Contenedor que permite el desplazamiento horizontal de los tracks de Spotify */
+.spotify-tracks-container {
+  display: flex;
+  overflow-x: auto; /* Habilita el desplazamiento horizontal */
+  gap: 10px; /* Espacio entre los iframes */
+  padding: 10px 0; /* Espaciado superior e inferior */
+}
+
+.spotify-tracks-container iframe {
+  flex: 0 0 auto; /* Asegura que los iframes no se colapsen y se muestren en fila */
+  height: 80px; /* Ajusta la altura para que todos los iframes sean uniformes */
+}
+.artist-detail-container {
+  display: flex;
+  justify-content: center; /* Centra el contenedor en el eje horizontal */
+  padding: 20px; /* Espaciado alrededor del contenedor */
+}
+
+.artist-content {
+  display: flex;
+  align-items: flex-start; /* Alinea los elementos al principio del contenedor */
+  gap: 20px; /* Espacio entre la imagen y la descripción */
+  max-width: 1200px; /* Ancho máximo del contenedor, ajusta según sea necesario */
+  width: 100%; /* Asegura que el contenedor ocupe el ancho completo disponible */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el contenedor */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.artist-image img {
+  width: 200px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: auto;
+  border-radius: 10px; /* Bordes redondeados para la imagen */
+}
+
+.artist-description {
+  flex: 1; /* Ocupa el espacio restante del contenedor */
+}
+
+.artist-description h1 {
+  margin-top: 0; /* Elimina el margen superior del título */
+}
+
+.artist-description p {
+  margin: 10px 0; /* Margen superior e inferior del párrafo */
+  color: #fff; /* Ajusta el color del texto si es necesario */
+}
+
+.album-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.album-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.album-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.album-info {
+  flex-grow: 1;
+}
+
+.album-info h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.album-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* styles.css */
+.container.fondo-negro {
+  background-color: white; /* Color de fondo blanco */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 50px 0;
+}
+
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-row {
+  display: flex;
+  gap: 10px;
+}
+
+.image-large img {
+  width: 200px; /* Ajusta el tamaño para que sea grande */
+  height: 200px; 
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
+
+.image-medium img {
+  width: 150px; /* Ajusta el tamaño para que sea mediano */
+  height: 150px;
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
+
+.image-small img {
+  width: 75px; /* Ajusta el tamaño para que sea pequeño */
+  height: 75px;
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.info h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.info p, .info ul, .info li {
+  color: #cccccc;
+  font-size: 16px;
+}
+
+/* Nueva clase para destacar el texto en amarillo */
+.highlight {
+  color: #FFD700; /* Color amarillo */
+}
+
+.contact-info {
+  margin-top: 20px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: #cccccc;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 24px;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
+

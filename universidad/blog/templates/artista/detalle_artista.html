@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ artista.nombre }}{% endblock %}
+
+{% block content %}
+  <!-- Enlace para volver a la lista de artistas -->
+  <div class="d-flex justify-content-start mt-3 ms-5">
+    <a href="{% url 'lista_artistas' %}" class="text-white text-decoration-none">
+      <i class="fa-solid fa-arrow-left fa-3x"></i>
+    </a>
+  </div>
+
+
+  <div class="container-fluid mt-5 mb-4">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="artist-image">
+          <!-- Ajustar el tamaño de la imagen -->
+          <img src="{{ artista.imagen.url }}" class="img-fluid" alt="{{ artista.nombre }}" style="width: 100%; height: 600px; object-fit: cover;">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="artist-description">
+          <h1 class="large-title">{{ artista.nombre }}</h1>
+          <p>{{ artista.descripcion }}</p>
+          <div class="d-flex justify-content-center mt-3">
+            {% if artista.link_instagram %}
+              <a href="{{ artista.link_instagram }}" target="_blank" class="mx-2 text-white text-decoration-none social-icon">
+                <i class="fa-brands fa-instagram fa-3x"></i>
+              </a>
+            {% endif %}
+            {% if artista.link_twitter %}
+              <a href="{{ artista.link_twitter }}" target="_blank" class="mx-2 text-white text-decoration-none social-icon">
+                <i class="fa-brands fa-twitter fa-3x"></i>
+              </a>
+            {% endif %}
+            {% if artista.link_facebook %}
+              <a href="{{ artista.link_facebook }}" target="_blank" class="mx-2 text-white text-decoration-none social-icon">
+                <i class="fa-brands fa-facebook fa-3x"></i>
+              </a>
+            {% endif %}
+            {% if artista.link_tiktok %}
+              <a href="{{ artista.link_tiktok }}" target="_blank" class="mx-2 text-white text-decoration-none social-icon">
+                <i class="fa-brands fa-tiktok fa-3x"></i>
+              </a>
+            {% endif %}
+          </div>
+          
+      </div>
+    </div>
+  </div>
+{% endblock %}

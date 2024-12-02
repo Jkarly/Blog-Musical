@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="{% if request.user.perfilusuario.foto_perfil %}{{ request.user.perfilusuario.foto_perfil.url }}?{{ request.user.perfilusuario.updated_at.timestamp }}{% else %}{% static 'images/default.png' %}{% endif %}" alt="Perfil">
+
+
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">{{ perfil.user.username }}</p>
+                            <p class="subtitle is-6">{{ perfil.user.email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <p>Fecha de creacion: {{ perfil.fecha_nacimiento }}</p>
+                        <p>Teléfono: {{ perfil.telefono|default:"No disponible" }}</p>
+                        <!-- Aquí puedes agregar más información del perfil -->
+                        <a href="{% url 'editar_perfil' %}" class="button is-info">Editar Perfil</a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="button is-danger">Cerrar Sesión</a>
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

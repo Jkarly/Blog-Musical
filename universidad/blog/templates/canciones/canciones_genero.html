@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Canciones del Género: {{ genero.nombre }}{% endblock %}
+
+{% block content %}
+  <h1 class="title">Canciones del Género: {{ genero.nombre }}</h1>
+
+  <!-- Sección para escuchar en Spotify -->
+  <div class="section">
+    <h3 class="title is-4">Escuchar en Spotify</h3>
+    {% if track_ids %}
+      <div class="spotify-tracks-container">
+        {% for track_id in track_ids %}
+          <iframe src="https://open.spotify.com/embed/track/{{ track_id }}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No se encontró información de la pista en Spotify.</p>
+    {% endif %}
+  </div>
+
+{% endblock %}

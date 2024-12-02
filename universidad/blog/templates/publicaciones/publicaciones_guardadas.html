@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Publicaciones Guardadas{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Publicaciones Guardadas</h1>
+    <div class="columns is-multiline">
+        {% for guardado in publicaciones %}
+            <div class="column is-12-mobile is-6-tablet is-4-desktop mb-4">
+                <article class="box publication-box">
+                    <figure class="image is-16by9">
+                        {% if guardado.publicacion.imagen %}
+                            <img src="{{ guardado.publicacion.imagen.url }}" alt="Imagen de la publicación: {{ guardado.publicacion.titulo }}">
+                        {% else %}
+                            <img src="{% static 'default-image.png' %}" alt="Imagen por defecto">
+                        {% endif %}
+                    </figure>
+
+                    <div class="content">
+                        <div class="is-flex is-justify-content-space-between">
+                            <h3 class="title is-4">{{ guardado.publicacion.titulo }}</h3>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'guardar_publicacion' guardado.publicacion.id %}" class="button is-danger is-small">Eliminar</a>
+                            {% endif %}
+                        </div>
+                        <p>{{ guardado.publicacion.descripcion|slice:":200" }}{% if guardado.publicacion.descripcion|length > 200 %}...{% endif %}</p>
+                        <p class="has-text-grey-light"><strong>Fecha de Creación:</strong> {{ guardado.publicacion.fecha_creacion }}</p>
+                        
+                        <div class="user-info d-flex align-items-center text-start">
+                            <div class="user-avatar me-2">
+                                {% if guardado.publicacion.usuario.perfilusuario.foto_perfil %}
+                                    <figure class="image is-48x48">
+                                        <img src="{{ guardado.publicacion.usuario.perfilusuario.foto_perfil.url }}" alt="Foto de perfil de {{ guardado.publicacion.usuario.username }}" class="is-rounded">
+                                    </figure>
+                                {% else %}
+                                    <figure class="image is-48x48">
+                                        <img src="{% static 'default-avatar.png' %}" alt="Avatar por defecto de {{ guardado.publicacion.usuario.username }}" class="is-rounded">
+                                    </figure>
+                                {% endif %}
+                            </div>
+                            <p class="has-text-grey"><strong>Publicador:</strong> {{ guardado.publicacion.usuario.username }}</p>
+                        </div>
+                        
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
